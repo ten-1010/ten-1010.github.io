@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生詳細</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="studentName">学生名</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>顧客名</th>
+                <th>種目名</th>
+            </tr>
+        </thead>
+        <tbody id="customerList">
+            <!-- 顧客名と種目名がここに表示される -->
+        </tbody>
+    </table>
+    <script>
+        // 仮のデータ
+        const studentDetails = {
+            1: { name: 'A', customers: [{ name: 'C', subject: '種目1' }, { name: 'D', subject: '種目2' }] },
+            2: { name: 'B', customers: [{ name: 'E', subject: '種目3' }, { name: 'F', subject: '種目4' }] },
+            // 他の学生データ
+        };
+
+        const studentId = window.location.pathname.split('/').pop();
+        const student = studentDetails[studentId];
+
+        document.getElementById('studentName').textContent = student.name;
+
+        const customerList = document.getElementById('customerList');
+        student.customers.forEach(customer => {
+            const row = document.createElement('tr');
+            const nameCell = document.createElement('td');
+            nameCell.textContent = customer.name;
+            const subjectCell = document.createElement('td');
+            subjectCell.textContent = customer.subject;
+            row.appendChild(nameCell);
+            row.appendChild(subjectCell);
+            customerList.appendChild(row);
+        });
+    </script>
+</body>
+</html>
