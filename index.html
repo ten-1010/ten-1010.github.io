@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生名簿</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>学生名簿</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>学生名</th>
+            </tr>
+        </thead>
+        <tbody id="studentList">
+            <!-- 学生名がここに表示される -->
+        </tbody>
+    </table>
+    <script>
+        // 仮のデータ
+        const students = [
+            { name: 'A', id: 1 },
+            { name: 'B', id: 2 },
+            // 他の学生データ
+        ];
+
+        const studentList = document.getElementById('studentList');
+
+        students.forEach(student => {
+            const row = document.createElement('tr');
+            const cell = document.createElement('td');
+            cell.innerHTML = `<a href="/student/${student.id}">${student.name}</a>`;
+            row.appendChild(cell);
+            studentList.appendChild(row);
+        });
+    </script>
+</body>
+</html>
